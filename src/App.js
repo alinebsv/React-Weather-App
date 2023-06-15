@@ -1,6 +1,7 @@
 import "./App.css";
 import Search from "./Search";
 import Forecast from "./Forecast";
+import Footer from "./Footer";
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
           <Forecast />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
