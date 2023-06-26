@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import FormattedDate from "./FormattedDate.js";
+import WeatherResult from "./WeatherResult.js";
 
 export default function Search(props) {
   const [city, setCity] = useState(props.defaultCity);
@@ -57,35 +57,7 @@ export default function Search(props) {
             </div>
           </div>
         </form>
-        <div className="Overview">
-          <h1>{weather.city}</h1>
-          <ul>
-            <li>
-              <FormattedDate date={weather.date} />
-            </li>
-            <li className="text-capitalize">{weather.description}</li>
-          </ul>
-        </div>
-        <div className="Temperature">
-          <div className="row">
-            <div className="col-md-6">
-              <div className="d-flex weather-temperature">
-                <img src={weather.icon} alt={weather.description} id="icon" />
-                <div>
-                  <strong id="temperature">{weather.temperature}</strong>
-                  <span className="units"> °C</span>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <ul>
-                <li>Precipitation: {weather.precipitation}%</li>
-                <li>Humidity: {weather.humidity}%</li>
-                <li>Wind: {weather.wind} km/h</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        <WeatherResult data={weather} />
       </div>
     );
   } else {
