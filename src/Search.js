@@ -3,7 +3,7 @@ import axios from "axios";
 import FormattedDate from "./FormattedDate.js";
 
 export default function Search(props) {
-  const [city, setCity] = useState(null);
+  const [city, setCity] = useState(props.defaultCity);
   const [searched, setSearched] = useState(false);
   const [weather, setWeather] = useState({});
 
@@ -11,11 +11,14 @@ export default function Search(props) {
     setCity(event.target.value);
   }
 
-  function showCity(event) {
-    event.preventDefault();
+  function search() {
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=4b3503b2f08a729413c4d33ef1186004&units=metric`;
     axios.get(url).then(showWeather);
-    console.log(url);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    search(city);
   }
 
   function showWeather(response) {
@@ -35,7 +38,7 @@ export default function Search(props) {
   if (searched) {
     return (
       <div className="Search">
-        <form id="search-form" className="mb-4" onSubmit={showCity}>
+        <form id="search-form" className="mb-4" onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-sm-9">
               <input
@@ -86,8 +89,7 @@ export default function Search(props) {
       </div>
     );
   } else {
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=4b3503b2f08a729413c4d33ef1186004&units=metric`;
-    axios.get(url).then(showWeather);
+    search();
     return "Loading...";
   }
 }
