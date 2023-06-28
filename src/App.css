@@ -101,3 +101,7 @@ footer a {
   margin-left: 15px;
   margin-top: 45px;
 }
+
+.forecast-icon {
+  font-size: 20px !important;
+}

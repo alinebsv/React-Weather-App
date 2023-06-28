@@ -22,6 +22,8 @@ export default function WeatherResult(props) {
               <WeatherIcon
                 icon={props.data.icon}
                 iconDescription={props.data.description}
+                iconW="72"
+                iconH="72"
               />
               <TemperatureResult celsius={props.data.temperature} />
             </div>
