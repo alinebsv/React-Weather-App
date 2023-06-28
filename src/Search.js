@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import WeatherResult from "./WeatherResult.js";
+import Forecast from "./Forecast";
 
 export default function Search(props) {
   const [city, setCity] = useState(props.defaultCity);
@@ -12,7 +13,7 @@ export default function Search(props) {
   }
 
   function search() {
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=4b3503b2f08a729413c4d33ef1186004&units=metric`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=bb0df6985c2eab6a171d64a6bacbb4e1&units=metric`;
     axios.get(url).then(showWeather);
   }
 
@@ -30,7 +31,9 @@ export default function Search(props) {
       humidity: response.data.main.humidity,
       wind: Math.round(response.data.wind.speed),
       precipitation: response.data.clouds.all,
+      iconId: response.data.weather[0].icon,
       icon: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      coordinates: response.data.coord,
     });
     setSearched(true);
   }
@@ -58,6 +61,7 @@ export default function Search(props) {
           </div>
         </form>
         <WeatherResult data={weather} />
+        <Forecast icon="01d" coordinates={weather.coordinates} />
       </div>
     );
   } else {
