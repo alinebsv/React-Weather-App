@@ -5,12 +5,7 @@ export default function WeatherIcon(props) {
 
   return (
     <div className="weatherIcon">
-      <img
-        src={iconlink}
-        alt={props.iconDescription}
-        size={props.size}
-        id="icon"
-      />
+      <img src={iconlink} alt={props.iconDescription} id="icon" />
     </div>
   );
 }
