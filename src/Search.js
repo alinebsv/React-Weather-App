@@ -61,7 +61,11 @@ export default function Search(props) {
           </div>
         </form>
         <WeatherResult data={weather} />
-        <Forecast icon="01d" coordinates={weather.coordinates} />
+        <Forecast
+          icon={weather.icon}
+          description={weather.description}
+          coordinates={weather.coordinates}
+        />
       </div>
     );
   } else {
